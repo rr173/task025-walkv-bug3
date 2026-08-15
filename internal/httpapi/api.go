@@ -80,7 +80,7 @@ func (s *Server) handleGet(w http.ResponseWriter, r *http.Request) {
 	}
 	v, ok := s.store.Get([]byte(key))
 	if !ok {
-		writeJSON(w, http.StatusOK, getResponse{Found: false})
+		writeJSON(w, http.StatusNotFound, getResponse{Found: false})
 		return
 	}
 	writeJSON(w, http.StatusOK, getResponse{Found: true, Value: string(v)})
